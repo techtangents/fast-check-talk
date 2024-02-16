@@ -1,0 +1,35 @@
+/*
+sort
+- idempotent
+- every input appears in the output
+- every output appears in the input
+- length remains the same
+- every element is less than or equal to the next
+- sort(x) === sort(x)
+- sorting a single-element array is identity
+
+startswith
+- a start with a
+- a + b starts with a
+- everything starts with ""
+- "" does not start with anything non-empty
+- a does not start with b if b is longer than a
+- a does not start with b if a and b are non-empty and constructed from different character classes
+
+array contains
+- [x] contains x
+- a ++ [x] ++ b contains x
+- (remove x from a) does not contain x
+- compare two algorithms - array.some vs Set.contains
+
+RBAC
+- user has role, role has permission
+- does user have permission?
+- generating data in a domain
+- generating deliberately matching and non-matching data
+
+tests
+- user has permission if in role with permission
+- user has no permission if only in roles without permission
+
+ */
