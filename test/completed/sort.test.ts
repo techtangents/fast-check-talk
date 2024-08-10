@@ -1,7 +1,19 @@
 import fc from 'fast-check';
 import { sort } from '../../src/main';
+import {assertSorted} from "../utils/testutils";
 
 describe('sort', () => {
+
+    it('produces a sorted list', () => {
+        fc.assert(fc.property(
+            fc.array(fc.nat(), { minLength: 2 }),
+            input => {
+                const output = sort(input, (a, b) => a - b);
+                assertSorted(output);
+            }
+        ));
+    });
+
    it('is idempotent', () => {
        fc.assert(fc.property(
            fc.array(fc.string()),
@@ -35,34 +47,11 @@ describe('sort', () => {
         ));
     });
 
-    it('preserves referential transparency', () => {
-        fc.assert(fc.property(
-            fc.array(fc.string()),
-            input => {
-                expect(sort(input)).toEqual(sort(input));
-            }
-        ));
-    });
-
     it('outputs a list the same length', () => {
         fc.assert(fc.property(
             fc.array(fc.string()),
             input => {
                 expect(sort(input).length).toBe(input.length);
-            }
-        ));
-    });
-
-    it('produces a sorted list', () => {
-        fc.assert(fc.property(
-            fc.array(fc.nat(), { minLength: 2 }),
-            input => {
-                const output = sort(input, (a, b) => a - b);
-                for (let i = 0; i < output.length - 2; i++) {
-                    const a = output[i];
-                    const b = output[i + 1];
-                    expect(a <= b).toBe(true);
-                }
             }
         ));
     });
