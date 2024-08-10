@@ -3,10 +3,17 @@ sort
 - idempotent
 - every input appears in the output
 - every output appears in the input
-- length remains the same
+- preserves length
 - every element is less than or equal to the next
 - sort(x) === sort(x)
 - sorting a single-element array is identity
+
+reverse
+- its own inverse
+- reverse([a, ...xs]) === [...reverse(xs), a]
+- preserves length
+- every input appears in the output
+- every output appears in the input
 
 startswith
 - a start with a
@@ -21,6 +28,9 @@ array contains
 - a ++ [x] ++ b contains x
 - (remove x from a) does not contain x
 - compare two algorithms - array.some vs Set.contains
+
+number of data packs
+- data packs cover usage
 
 RBAC
 - user has role, role has permission
