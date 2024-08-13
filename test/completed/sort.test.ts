@@ -1,15 +1,29 @@
 import fc from 'fast-check';
 import {sort} from '../../src/main';
 import {assertSorted} from "../utils/testutils";
+import {mergeSort} from "../../src/mergeSort";
 
 describe('sort', () => {
+
+  const ordNumbers = (a: number, b: number) => a - b;
 
   it('produces a sorted list', () => {
     fc.assert(fc.property(
       fc.array(fc.nat(), {minLength: 2}),
       input => {
-        const output = sort(input, (a, b) => a - b);
+        const output = sort(input, ordNumbers);
         assertSorted(output);
+      }
+    ));
+  });
+
+  it('is consistent with mergeSort', () => {
+    fc.assert(fc.property(
+      fc.array(fc.nat(), {minLength: 2}),
+      input => {
+        const output1 = sort(input, ordNumbers);
+        const output2 = mergeSort(input);
+        expect(output1).toEqual(output2);
       }
     ));
   });
